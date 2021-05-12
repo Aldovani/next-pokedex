@@ -8,9 +8,9 @@ export const Header = () => {
         <Link href="/">
         <a >Home</a>
         </Link>
-        <Link href="/">
+        <Link href="/game">
         
-        <a >Sobre o Projeto</a>
+        <a >Game</a>
         </Link>
       </nav>
     </header>

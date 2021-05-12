@@ -8,16 +8,29 @@
   border: 1px solid black;
   border-radius: 1rem;
 transition: all 0.5s;
-box-shadow: 2px 3px 3px rgba(0, 0, 0, 0.5);
+box-shadow: 3px 3px 0 2px rgba(0, 0, 0, 0.5);
+background: #77afe2;
 }
 
 .Card:hover{
-  transform: scale(1.05);
-  box-shadow: 2px 3px 3px rgba(0, 0, 0, 0);
+  transform: translate(1px, 1px);
+  box-shadow: 1px 1px 0 2px rgba(0, 0, 0, 0.5), inset  1px 1px 0 2px rgba(0, 0, 0, 0.05);
 }
+
+
 .Card a img{
   font-size: 0;
   width: 20px;
   height: 20px;
   color: #8d8df7;
+}
+
+.Card p{
+text-align: center;
+color: #000000;
+font-size: 18px;
+}
+.Card p:last-of-type{
+  font-weight: 700;
+  text-transform: capitalize;
 }
