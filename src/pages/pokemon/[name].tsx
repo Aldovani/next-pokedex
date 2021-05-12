@@ -1,5 +1,5 @@
-import  Head  from "next/head";
-import { StatsBar } from "../../components/StatsBar";
+import Head from "next/head";
+import { StatsBase } from "../../components/StatsBase";
 import { api } from "../../services/index";
 import style from "./style.module.css";
 
@@ -9,6 +9,7 @@ type PokemonType = {
     name: string;
     stats: Stat[];
     types: Type[];
+    species:{name:string,url:string}
   };
 };
 
@@ -26,19 +27,19 @@ type Stat = {
 };
 
 export default function Pokemon({ pokemon }: PokemonType) {
-  console.log(pokemon)
   return (
     <div className={style.container}>
       <Head>
-        <title>Stats | {pokemon.name }</title>
+        <title>Stats | {pokemon.name}</title>
       </Head>
-      <div style={{display:"flex" ,  justifyContent:"flex-start"}}>
-      <StatsBar stat={pokemon.stats} />
-        <div>
-        </div>
-</div>
+
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <StatsBase stat={pokemon.stats} />
+
+      </div>
 
       <div
+     
         className={style.pokemon}
         style={{ background: `var(--${pokemon.types[0].type.name})` }}
       >
@@ -59,7 +60,9 @@ export default function Pokemon({ pokemon }: PokemonType) {
             />
           ))}
         </div>
+
       </div>
+    
     </div>
   );
 }
@@ -72,11 +75,22 @@ export function getStaticPaths() {
 }
 export async function getStaticProps(context) {
   const { name } = context.params;
-  const pokemon = await api.get(`https://pokeapi.co/api/v2/pokemon/${name}`);
+  let pokemon;
+  try {
+    pokemon = await api.get(`/api/v2/pokemon/${name}`);
 
-  return {
-    props: {
-      pokemon: pokemon.data,
-    },
-  };
+    return {
+      props: {
+        pokemon: pokemon.data,
+      },
+    };
+  } catch {
+    if (!pokemon) {
+      return {
+        redirect: {
+          destination: "/",
+        },
+      };
+    }
+  }
 }

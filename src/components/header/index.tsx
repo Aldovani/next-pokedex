@@ -12,6 +12,7 @@ export const Header = () => {
         
         <a >Game</a>
         </Link>
+     
       </nav>
     </header>
   );
