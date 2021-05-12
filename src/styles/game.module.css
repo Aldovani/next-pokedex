@@ -1,0 +1,19 @@
+.Container{
+  height: calc(100vh - 6rem);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: column;
+}
+.Container button{
+  width: 100px;
+  height: 100px;
+}
+
+.ContainerPokemon{
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
