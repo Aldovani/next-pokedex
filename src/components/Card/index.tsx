@@ -8,7 +8,7 @@ export function Card({ name }) {
         src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${name.entry_number}.png`}
         alt=""
       />
-      <p>
+      <p >
     {`#${name.entry_number} `}
       </p>
         <p>{name.pokemon_species.name}</p>
