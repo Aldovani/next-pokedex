@@ -1,3 +1,4 @@
+import { GetStaticPaths } from "next";
 import Head from "next/head";
 import { StatsBase } from "../../components/StatsBase";
 import { api } from "../../services/index";
@@ -67,7 +68,7 @@ export default function Pokemon({ pokemon }: PokemonType) {
   );
 }
 
-export function getStaticPaths() {
+export const getStaticPaths: GetStaticPaths = async () => {
   return {
     paths: [],
     fallback: "blocking",

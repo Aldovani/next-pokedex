@@ -1,43 +1,42 @@
-.container{
-  height: calc(100vh - 6rem);
+.container {
+  height: calc(100vh - 4rem);
+  top: 4rem;
   display: grid;
-  grid-template-columns: 1fr  0.3fr;
+  grid-template-columns: 1fr 0.3fr;
+  position: relative;
 }
 
-
-.pokemon{
+.pokemon {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   border-left: 2px solid black;
-  border-top-left-radius:8px ;
-  border-bottom-left-radius:8px ;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
 }
-.pokemon img{
+.pokemon img {
   height: 250px;
   width: 250px;
 }
 
-.baseStat{
+.baseStat {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   height: 200px;
   flex-wrap: wrap;
-  text-align: center  ;
+  text-align: center;
   gap: 3rem;
 }
-.baseStat div{
+.baseStat div {
   height: 70px;
   width: 150px;
   border: 1px solid black;
 }
 
-.containerTypes{
+.containerTypes {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap:30px;
-  
+  gap: 30px;
 }
-

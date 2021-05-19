@@ -1,8 +1,10 @@
-.container{
+.container {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-gap: 2rem;
-padding: 4rem;
+  gap: 2rem;
+  padding: 4rem;
+  position: relative;
+  top: 1rem;
 }
