@@ -6,17 +6,6 @@ import loadingAnimation from "../loadingAnimation.json";
 import Head from "next/head";
 
 export default function Game() {
-  const [start, setStart] = useState(false);
-  const [number, setNumber] = useState(0);
-  const [pokemon, setPokemon] = useState(null);
-  const [isloading, setIsLoading] = useState(false);
-  const [valueInput, setValueInput] = useState("");
-  const [isCorrect, setIsCorrect] = useState(false);
-  const [recordScore, setRecordScore] = useState(0);
-  const [score, setScore] = useState(0);
-
-  const [correto, setCorreto] = useState("");
-
   const defaultOptions = {
     loop: true,
     autoplay: true,
@@ -25,6 +14,36 @@ export default function Game() {
       preserveAspectRatio: "xMidYMid slice",
     },
   };
+
+  const [start, setStart] = useState(false);
+  const [number, setNumber] = useState(0);
+  const [pokemon, setPokemon] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [valueInput, setValueInput] = useState("");
+  const [isCorrect, setIsCorrect] = useState(false);
+  const [score, setScore] = useState(0);
+  const [correto, setCorreto] = useState("");
+  const [recordScore, setRecordScore] = useState(0);
+
+  useEffect(() => {
+    if (localStorage.getItem("record")) {
+
+      setRecordScore(Number(localStorage.getItem("record")))
+    } else {
+      localStorage.setItem("record", "0");
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!start) {
+      return
+    }
+    if (score >= recordScore) {
+      setRecordScore(score)
+      localStorage.setItem("record", `${score}`);
+    }
+    
+  }, [score]);
 
   async function sortPokemon() {
     const numberRandom = Math.floor(Math.random() * 151);
@@ -43,15 +62,15 @@ export default function Game() {
       setIsCorrect(true);
       setCorreto("none");
       setValueInput("");
-      setScore(score + 1)
+      setScore(score + 1);
 
       setTimeout(() => {
         setCorreto("");
-        setIsCorrect(false)
-        sortPokemon()
+        setIsCorrect(false);
+        sortPokemon();
       }, 3 * 1000);
-  
     } else {
+      alert("errou");
     }
   }
 
@@ -60,9 +79,7 @@ export default function Game() {
       <Head>
         <title>Pokedex | Game</title>
       </Head>
-      <div>
-        <h2>Record Score:{recordScore}</h2>
-      </div>
+
       {!start ? (
         <section className={style.section}>
           <h1>Quem é esse Pokemon ?</h1>
@@ -72,56 +89,67 @@ export default function Game() {
         </section>
       ) : (
         <>
-          {!isloading ? (
-            <Lottie height={400} width={400} options={defaultOptions} />
+          {!isLoading ? (
+            <Lottie height={300} width={300} options={defaultOptions} />
           ) : (
-            <section className={style.pokemon}>
-              {correto ? <div></div> : <div></div>}
-              <h2>Quem é esse Pokemon ?</h2>
-              <img
-                className={style.ImagePokemon}
-                style={{ filter: `${correto}` }}
-                onDragStart={(e) => e.preventDefault()}
-                src={`https://pokeres.bastionbot.org/images/pokemon/${number}.png`}
-              />
+            <>
+              <div>
+                <h2>Record Score:{recordScore}</h2>
+              </div>
 
-              <form className={style.form}>
-                <input
-                  type="text"
-                  id="pokemon"
-                  onChange={(e) => {
-                    setValueInput(e.target.value);
-                  }}
-                  value={valueInput}
-                  disabled={isCorrect}
-                />
-                <label
-                  className={
-                    valueInput === "" ? style.label : style.labelActive
-                  }
-                  htmlFor="pokemon"
-                >
-                  Nome do Pokemon
-                </label>
-                <button
-                  className={style.button}
-                  type="submit"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    confirmar();
-                  }}
-                  disabled={valueInput.trim() === ""}
-                >
-                  Confirmar
-                </button>
-              </form>
-            </section>
+              <section className={style.pokemon}>
+                    <h2>Quem é esse Pokemon ?</h2>
+                    {correto?(  <img
+                  className={style.ImagePokemon}
+                  style={{ filter: 'none' }}
+                  onDragStart={(e) => e.preventDefault()}
+                  src={`https://pokeres.bastionbot.org/images/pokemon/${number}.png`}
+                />):(  <img
+                  className={style.ImagePokemon}
+              
+                  onDragStart={(e) => e.preventDefault()}
+                  src={`https://pokeres.bastionbot.org/images/pokemon/${number}.png`}
+                />)}
+              
+
+                <form className={style.form}>
+                  <input
+                    type="text"
+                    id="pokemon"
+                    onChange={(e) => {
+                      setValueInput(e.target.value);
+                    }}
+                    value={valueInput}
+                    disabled={isCorrect}
+                  />
+                  <label
+                    className={
+                      valueInput === "" ? style.label : style.labelActive
+                    }
+                    htmlFor="pokemon"
+                  >
+                    Nome do Pokemon
+                  </label>
+                  <button
+                    className={style.button}
+                    type="submit"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      confirmar();
+                    }}
+                    disabled={valueInput.trim() === ""}
+                  >
+                    Confirmar
+                  </button>
+                </form>
+              </section>
+              <div>
+                <h2> Score:{score}</h2>
+              </div>
+            </>
           )}
         </>
       )}
-      <div>
-        <h2> Score:{score}</h2>
-      </div>
     </div>
   );
 }
