@@ -78,7 +78,7 @@ export async function getStaticProps(context) {
   const { name } = context.params;
   let pokemon;
   try {
-    pokemon = await api.get(`/api/v2/pokemon/${name}`);
+    pokemon = await api.get(`pokemon/${name}`);
 
     return {
       props: {

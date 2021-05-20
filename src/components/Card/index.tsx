@@ -3,7 +3,6 @@ import Link from "next/link";
 
 export function Card({ name }) {
   const convertNumber = (number: Number) => String(number).padStart(3, "00");
-
   return (
     <Link href={`/pokemon/${name.pokemon_species.name}`}>
       <a className={style.Card}>
