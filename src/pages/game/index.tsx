@@ -22,9 +22,9 @@ export default function Game() {
   const [valueInput, setValueInput] = useState("");
   const [isCorrect, setIsCorrect] = useState(false);
   const [score, setScore] = useState(0);
-  const [correto, setCorreto] = useState("");
+  const [correto, setCorreto] = useState(false);
   const [recordScore, setRecordScore] = useState(0);
-  const [tentativa,setTentativas]=useState(3)
+  const [tentativa, setTentativas] = useState(3);
 
   useEffect(() => {
     if (localStorage.getItem("record")) {
@@ -47,7 +47,7 @@ export default function Game() {
   async function sortPokemon() {
     const numberRandom = Math.floor(Math.random() * 151);
     setNumber(numberRandom);
-    const pokemonRandom = await api.get(`/api/v2/pokemon/${numberRandom}`);
+    const pokemonRandom = await api.get(`pokemon/${numberRandom}`);
     setPokemon(pokemonRandom.data);
 
     setStart(true);
@@ -57,19 +57,28 @@ export default function Game() {
   }
 
   function confirmar() {
-    if (valueInput.toLowerCase() == pokemon.name || valueInput == "1") {
+    if (valueInput.toLowerCase() == pokemon.name) {
       setIsCorrect(true);
-      setCorreto("none");
+      setCorreto(true);
       setValueInput("");
       setScore(score + 1);
+      setTentativas(3)
+      setTimeout(() => {
+        setCorreto(false);
+        setIsCorrect(false);
+      }, 4 * 1000);
 
       setTimeout(() => {
-        setCorreto("");
-        setIsCorrect(false);
         sortPokemon();
       }, 5 * 1000);
     } else {
-      alert("errou");
+      setTentativas(tentativa - 1)
+      console.log(tentativa)
+      if (tentativa === 1) {
+        setScore(0)
+        setTentativas(3)
+        sortPokemon();
+      }
     }
   }
 
@@ -93,8 +102,8 @@ export default function Game() {
           ) : (
             <>
               <div className={style.score}>
-                    <h2>Record Score</h2>
-                    <h1>{`${recordScore}`.padStart(2,"0")}</h1>
+                <h2>Record Score</h2>
+                <h1>{`${recordScore}`.padStart(2, "0")}</h1>
               </div>
 
               <section className={style.pokemon}>
@@ -146,8 +155,9 @@ export default function Game() {
                 </form>
               </section>
               <div className={style.score}>
-                    <h2>Score</h2>
-                    <h1>{`${score}`.padStart(2,"0")}</h1>
+                <h2>Score</h2>
+                <h1>{`${score}`.padStart(2, "0")}</h1>
+                <h3>Tentativas:<strong>{tentativa}</strong></h3>
               </div>
             </>
           )}

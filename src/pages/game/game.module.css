@@ -18,12 +18,12 @@
   cursor: pointer;
   background: #7d7e7e;
   border-radius: 10px;
-  transition: all 1s;
   color: white;
   font-size: 45px;
+  transition: all 0.5s;
 }
 .buttonStart:hover {
-  letter-spacing: 15px;
+ opacity: 0.77;
 }
 .section {
   display: flex;
@@ -115,4 +115,7 @@
 }
 .score h1{
   font-size: 70px;
+}
+.score strong{
+  color: rgb(255, 0, 0);
 }
