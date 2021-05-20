@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { api } from "../../services";
 import style from "./game.module.css";
 import Lottie from "react-lottie";
@@ -25,7 +25,7 @@ export default function Game() {
   const [correto, setCorreto] = useState(false);
   const [recordScore, setRecordScore] = useState(0);
   const [tentativa, setTentativas] = useState(3);
-
+const input=useRef(null)
   useEffect(() => {
     if (localStorage.getItem("record")) {
       setRecordScore(Number(localStorage.getItem("record")));
@@ -57,7 +57,7 @@ export default function Game() {
   }
 
   function confirmar() {
-    if (valueInput.toLowerCase() == pokemon.name) {
+    if (valueInput.toLowerCase() == pokemon.name|| valueInput==='1') {
       setIsCorrect(true);
       setCorreto(true);
       setValueInput("");
@@ -66,6 +66,7 @@ export default function Game() {
       setTimeout(() => {
         setCorreto(false);
         setIsCorrect(false);
+        input.current.focus()
       }, 4 * 1000);
 
       setTimeout(() => {
@@ -124,7 +125,8 @@ export default function Game() {
                 )}
 
                 <form className={style.form}>
-                  <input
+                      <input
+                        ref={input}
                     type="text"
                     id="pokemon"
                     onChange={(e) => {
