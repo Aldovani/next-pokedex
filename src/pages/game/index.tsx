@@ -45,7 +45,7 @@ export default function Game() {
   }, [score]);
 
   async function sortPokemon() {
-    const numberRandom = Math.floor(Math.random() * 151);
+    const numberRandom =  Math.floor(Math.random() * 150)+1;
     setNumber(numberRandom);
     const pokemonRandom = await api.get(`pokemon/${numberRandom}`);
     setPokemon(pokemonRandom.data);
