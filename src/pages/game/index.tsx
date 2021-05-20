@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { api } from "../services";
-import style from "../styles/game.module.css";
+import { api } from "../../services";
+import style from "./game.module.css";
 import Lottie from "react-lottie";
-import loadingAnimation from "../loadingAnimation.json";
+import loadingAnimation from "../../loadingAnimation.json";
 import Head from "next/head";
 
 export default function Game() {
@@ -24,11 +24,11 @@ export default function Game() {
   const [score, setScore] = useState(0);
   const [correto, setCorreto] = useState("");
   const [recordScore, setRecordScore] = useState(0);
+  const [tentativa,setTentativas]=useState(3)
 
   useEffect(() => {
     if (localStorage.getItem("record")) {
-
-      setRecordScore(Number(localStorage.getItem("record")))
+      setRecordScore(Number(localStorage.getItem("record")));
     } else {
       localStorage.setItem("record", "0");
     }
@@ -36,13 +36,12 @@ export default function Game() {
 
   useEffect(() => {
     if (!start) {
-      return
+      return;
     }
     if (score >= recordScore) {
-      setRecordScore(score)
+      setRecordScore(score);
       localStorage.setItem("record", `${score}`);
     }
-    
   }, [score]);
 
   async function sortPokemon() {
@@ -68,7 +67,7 @@ export default function Game() {
         setCorreto("");
         setIsCorrect(false);
         sortPokemon();
-      }, 3 * 1000);
+      }, 5 * 1000);
     } else {
       alert("errou");
     }
@@ -82,35 +81,38 @@ export default function Game() {
 
       {!start ? (
         <section className={style.section}>
-          <h1>Quem é esse Pokemon ?</h1>
-          <button className={style.button} onClick={sortPokemon}>
+          <h1 className={style.tituloPokemon}>Quem é esse Pokemon ?</h1>
+          <button className={style.buttonStart} onClick={sortPokemon}>
             Jogar
           </button>
         </section>
       ) : (
         <>
           {!isLoading ? (
-            <Lottie height={300} width={300} options={defaultOptions} />
+            <Lottie height={500} width={500} options={defaultOptions} />
           ) : (
             <>
-              <div>
-                <h2>Record Score:{recordScore}</h2>
+              <div className={style.score}>
+                    <h2>Record Score</h2>
+                    <h1>{`${recordScore}`.padStart(2,"0")}</h1>
               </div>
 
               <section className={style.pokemon}>
-                    <h2>Quem é esse Pokemon ?</h2>
-                    {correto?(  <img
-                  className={style.ImagePokemon}
-                  style={{ filter: 'none' }}
-                  onDragStart={(e) => e.preventDefault()}
-                  src={`https://pokeres.bastionbot.org/images/pokemon/${number}.png`}
-                />):(  <img
-                  className={style.ImagePokemon}
-              
-                  onDragStart={(e) => e.preventDefault()}
-                  src={`https://pokeres.bastionbot.org/images/pokemon/${number}.png`}
-                />)}
-              
+                <h2>Quem é esse Pokemon ?</h2>
+                {correto ? (
+                  <img
+                    className={style.ImagePokemon}
+                    style={{ filter: "none" }}
+                    onDragStart={(e) => e.preventDefault()}
+                    src={`https://pokeres.bastionbot.org/images/pokemon/${number}.png`}
+                  />
+                ) : (
+                  <img
+                    className={style.ImagePokemon}
+                    onDragStart={(e) => e.preventDefault()}
+                    src={`https://pokeres.bastionbot.org/images/pokemon/${number}.png`}
+                  />
+                )}
 
                 <form className={style.form}>
                   <input
@@ -143,8 +145,9 @@ export default function Game() {
                   </button>
                 </form>
               </section>
-              <div>
-                <h2> Score:{score}</h2>
+              <div className={style.score}>
+                    <h2>Score</h2>
+                    <h1>{`${score}`.padStart(2,"0")}</h1>
               </div>
             </>
           )}

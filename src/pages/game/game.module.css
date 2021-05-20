@@ -3,23 +3,28 @@
   display: flex;
   align-items: center;
   justify-content: space-evenly;
-position: relative;
-top: 4rem;
-
-  
+  position: relative;
+  top: 4rem;
 }
-
-.button {
-  width: 12rem;
-  height: 2rem;
+.tituloPokemon {
+  font-size: 3rem;
+  font-family: "Press Start 2P", cursive;
+}
+.buttonStart {
+  margin-top: 50px;
+  height: 80px;
+  width: 450px;
   border: 0;
   cursor: pointer;
+  background: #7d7e7e;
+  border-radius: 10px;
+  transition: all 1s;
+  color: white;
+  font-size: 45px;
 }
-.button:disabled {
-  background: #fdd;
-  cursor: default;
+.buttonStart:hover {
+  letter-spacing: 15px;
 }
-
 .section {
   display: flex;
   align-items: center;
@@ -47,49 +52,67 @@ top: 4rem;
   top: 10px;
   left: 15px;
   transition: all 1s;
-  
-
 }
 
 .form input {
   outline: none;
-  border: 1px solid grey;
-  border-bottom: 2px solid gray;
+  border: 2px solid grey;
+  border-bottom: 3px solid gray;
   border-radius: 3px;
   width: 15rem;
   color: #000000;
   height: 2.5rem;
-  background: #d4d5d6;
+  background: transparent;
   padding: 10px;
   transition: border 1s linear;
 }
-.form input:disabled ,.form input:disabled .label{
+.form input:disabled,
+.form input:disabled .label {
   opacity: 0.5;
 }
 
 .form input:focus-visible {
-  border: 1px solid #ff6753;
-  border-bottom: 2px solid #ff6753;
+  border: 2px solid #8f53ff;
+  border-bottom: 3px solid #a270ff;
 }
 
-.form input:focus-visible + .label{
+.form input:focus-visible + .label {
   font-size: 13px;
   top: -15px;
   left: 0;
-  
 }
 
-.form .labelActive{
+.form .labelActive {
   font-size: 13px;
   top: -15px;
   left: 0;
-
 }
-
+.button {
+  width: 15rem;
+  height: 2rem;
+  border: 0;
+  color: white;
+  cursor: pointer;
+  background: #848485;
+  transition: all 0.25s ;
+}
+.button:disabled {
+  background: #c5c4c4;
+  cursor: default;
+}
 
 .ImagePokemon {
   width: 250px;
   height: 250px;
   filter: brightness(0);
-  transition: filter 1s;
+  transition: filter 0.5s;
+}
+
+.score {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.score h1{
+  font-size: 70px;
 }
