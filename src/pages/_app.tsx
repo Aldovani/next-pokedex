@@ -1,4 +1,4 @@
-import { Header } from "../components/Header";
+import { Header } from "../components/header";
 import { ScoreContextProvider } from "../contexts/ScorerContext";
 import "../styles/globals.css";
 
