@@ -10,7 +10,7 @@ type PokemonType = {
     name: string;
     stats: Stat[];
     types: Type[];
-    species:{name:string,url:string}
+    species: { name: string; url: string };
   };
 };
 
@@ -36,11 +36,9 @@ export default function Pokemon({ pokemon }: PokemonType) {
 
       <div style={{ display: "flex", justifyContent: "center" }}>
         <StatsBase stat={pokemon.stats} />
-
       </div>
 
       <div
-     
         className={style.pokemon}
         style={{ background: `var(--${pokemon.types[0].type.name})` }}
       >
@@ -61,9 +59,7 @@ export default function Pokemon({ pokemon }: PokemonType) {
             />
           ))}
         </div>
-
       </div>
-    
     </div>
   );
 }
@@ -73,13 +69,12 @@ export const getStaticPaths: GetStaticPaths = async () => {
     paths: [],
     fallback: "blocking",
   };
-}
+};
 export async function getStaticProps(context) {
-  const { name } = context.params;
+  const { id } = context.params;
   let pokemon;
   try {
-    pokemon = await api.get(`pokemon/${name}`);
-
+    pokemon = await api.get(`pokemon/${id}`);
     return {
       props: {
         pokemon: pokemon.data,

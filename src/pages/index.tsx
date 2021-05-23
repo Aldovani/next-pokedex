@@ -19,7 +19,7 @@ export default function Home({ pokemon }) {
 }
 
 export async function getStaticProps() {
-  const response = await api.get("pokedex/2");
+  const response = await api.get("pokedex/1");
   return {
     props: {
       pokemon: response.data,

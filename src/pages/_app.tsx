@@ -1,13 +1,14 @@
-import { Header } from '../components/header'
-import '../styles/globals.css'
+import { Header } from "../components/Header";
+import { ScoreContextProvider } from "../contexts/ScorerContext";
+import "../styles/globals.css";
 
 function MyApp({ Component, pageProps }) {
   return (
-    <div>
-    <Header/>
-    <Component {...pageProps} />
-    </div>
-  )
+    <ScoreContextProvider>
+      <Header />
+      <Component {...pageProps} />
+    </ScoreContextProvider>
+  );
 }
 
-export default MyApp
+export default MyApp;
