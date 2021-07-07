@@ -1,19 +1,30 @@
 import style from "./style.module.css";
 import Link from "next/link";
 
-export function Card({ name }) {
+type CardProps = {
+  pokemon: {
+    entry_number: number;
+    pokemon_species: {
+      name: string;
+    };
+  };
+};
+
+export function Card({ pokemon }: CardProps) {
   const convertNumber = (number: Number) => String(number).padStart(3, "00");
   return (
-    <Link href={`/pokemon/${name.entry_number}`}>
-      <a className={style.Card}>
+    <Link href={`/pokemon/${pokemon.entry_number}`}>
+      <a className={style.Card} date-name={pokemon.pokemon_species.name}>
         <img
-          src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${name.entry_number}.png`}
-          alt=""
+          src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.entry_number}.png`}
+          alt={`${pokemon.pokemon_species.name}`}
+          title={`${pokemon.pokemon_species.name}`}
+          loading="lazy"
         />
         <p>
-          {name.pokemon_species.name}
+          {pokemon.pokemon_species.name}
           <br />
-          <span> {`#${convertNumber(name.entry_number)} `}</span>
+          <span> {`#${convertNumber(pokemon.entry_number)} `}</span>
         </p>
       </a>
     </Link>

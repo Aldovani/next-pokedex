@@ -1,7 +1,9 @@
 import { GetStaticPaths } from "next";
 import Head from "next/head";
-import { StatsBase } from "../../components/StatsBase";
+
 import { api } from "../../services/index";
+import { StatsBase } from "../../components/StatsBase";
+
 import style from "./style.module.css";
 
 type PokemonType = {
@@ -28,37 +30,44 @@ type Stat = {
 };
 
 export default function Pokemon({ pokemon }: PokemonType) {
+  const { weight, height }: any = pokemon;
+
   return (
     <div className={style.container}>
       <Head>
         <title>Stats | {pokemon.name}</title>
       </Head>
-
-      <div style={{ display: "flex", justifyContent: "center" }}>
-        <StatsBase stat={pokemon.stats} />
+      <div className={style.headerPokemon}>
+        <h1>{pokemon.name}</h1>
+        <div className={style.types}>
+          {pokemon.types.map((e, i) => (
+            <p key={i} className={`type ${e.type.name}`}>
+              {e.type.name}
+            </p>
+          ))}
+        </div>
       </div>
-
-      <div
-        className={style.pokemon}
-        style={{ background: `var(--${pokemon.types[0].type.name})` }}
-      >
+      <div className={style.stats}>
         <img
           src={`https://pokeres.bastionbot.org/images/pokemon/${pokemon.id}.png`}
           alt={`pokemon ${pokemon.name}`}
           title={pokemon.name}
         />
-        <h1>{pokemon.name.toUpperCase()}</h1>
-        <div className={style.containerTypes}>
-          {pokemon.types.map((e, i) => (
-            <img
-              key={i}
-              src={`https://res.cloudinary.com/da26hnrii/image/upload/v1620432613/${e.type.name}_.png`}
-              alt={e.type.name}
-              style={{ width: 50, height: 50 }}
-              title={e.type.name}
-            />
-          ))}
-        </div>
+
+        <section>
+            <ul className={style.statsBody}>
+              <li>
+                <p>height</p>
+                <span>{height / 10}M</span>
+              </li>
+              <li>
+                <p>weight</p>
+                <span>{weight / 10}KG</span>
+              </li>
+            </ul>
+
+          <StatsBase base_stat={pokemon.stats} key={pokemon.id} />
+        </section>
       </div>
     </div>
   );
@@ -80,11 +89,11 @@ export async function getStaticProps(context) {
         pokemon: pokemon.data,
       },
     };
-  } catch {
+  } catch (e) {
     if (!pokemon) {
       return {
         redirect: {
-          destination: "/",
+          destination: "/404",
         },
       };
     }

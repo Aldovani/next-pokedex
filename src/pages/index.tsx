@@ -1,29 +1,37 @@
-import { api } from "../services/index";
-import { Card } from "../components/Card/index";
-import styles from "../styles/Home.module.css" 
+import { useRouter } from "next/router";
 import Head from "next/head";
+import style from "../styles/Home.module.css";
 
+export default function Home() {
+  const router = useRouter();
 
-export default function Home({ pokemon }) {
-  const listPokemon = pokemon.pokemon_entries;
   return (
-    <div className={styles.container}>
+    <div className={style.container}>
       <Head>
         <title>Pokedex | Home</title>
-    </Head>
-      {listPokemon.map((e) => {
-       return <Card key={e.entry_number} name={e}  />;
-       })} 
+      </Head>
+
+      <main className={style.content}>
+      
+
+        <h1>Encontre todos os seus Pokémon favorito</h1>
+        <p>
+          Você pode saber o tipo de Pokémon, seus pontos fortes, desvantagens e
+          habilidades
+        </p>
+  
+        <button
+          onClick={() => {
+            router.push("/pokedex");
+          }}
+        >
+          Veja os pokemon
+        </button>
+      </main>
+
+      <section className={style.containerBanner}>
+        <img className={style.banner} src="/banner.svg" alt="" />
+      </section>
     </div>
   );
-}
-
-export async function getStaticProps() {
-  const response = await api.get("pokedex/1");
-  return {
-    props: {
-      pokemon: response.data,
-    },
-    
-  };
 }

@@ -6,11 +6,13 @@ export default class MyDocument extends Document {
       <Html>
         <Head>
           <link rel="shortcut icon" href="./favicon.png" type="image/x-icon" />
-          <link rel="preconnect" href="https://fonts.gstatic.com" />
-          <link
-            href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto:wght@400;500;700;900&display=swap"
-            rel="stylesheet"
-          />
+   
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com "/>
+<link href="https://fonts.googleapis.com/css2?family=Karla:wght@400;700&family=Source+Sans+Pro:wght@400;700&display=swap" rel="stylesheet"></link>
+
         </Head>
         <body>
           <Main />
