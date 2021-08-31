@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { useRouter } from "next/router";
 import style from "../styles/notFound.module.css";
 
@@ -11,7 +12,9 @@ export default function Custom404() {
         <span>A equipe rocket</span> venceu desta vez .
       </p>
 
-      <button onClick={() => router.push("/")}>Home</button>
+      <Link href="/">
+        <button>Home</button>
+      </Link>
       <img src="/teamRocket.svg" alt="team rocket" />
     </div>
   );

@@ -49,22 +49,23 @@ export default function Pokemon({ pokemon }: PokemonType) {
       </div>
       <div className={style.stats}>
         <img
-          src={`https://pokeres.bastionbot.org/images/pokemon/${pokemon.id}.png`}
+          // src={`https://pokeres.bastionbot.org/images/pokemon/${pokemon.id}.png`}
+          src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`}
           alt={`pokemon ${pokemon.name}`}
           title={pokemon.name}
         />
 
         <section>
-            <ul className={style.statsBody}>
-              <li>
-                <p>height</p>
-                <span>{height / 10}M</span>
-              </li>
-              <li>
-                <p>weight</p>
-                <span>{weight / 10}KG</span>
-              </li>
-            </ul>
+          <ul className={style.statsBody}>
+            <li>
+              <p>height</p>
+              <span>{height / 10}M</span>
+            </li>
+            <li>
+              <p>weight</p>
+              <span>{weight / 10}KG</span>
+            </li>
+          </ul>
 
           <StatsBase base_stat={pokemon.stats} key={pokemon.id} />
         </section>

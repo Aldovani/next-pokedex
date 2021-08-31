@@ -24,19 +24,31 @@
 
 .not_found button {
   background: #f2cb07;
-  box-shadow: inset 0px -9px 0px rgba(0, 0, 0, 0.18);
-  border-radius: 11px;
+  box-shadow:  0px 10px 0px #f2cb07b7;
+  border-radius: 8px;
+  
+  margin-top: 30px;
+  
   width: 230px;
   height: 65px;
-  border: 0;
-  margin-top: 30px;
+  
+  border: 1px solid #9b8100;
   font-size:20px ;
   cursor: pointer;
+
+
+  transition: .3s;
+  transform-style: preserve-3d;
 }
 
 .not_found button:hover{
-opacity: 0.8;
-
+  transform: translateY(3px);
+  box-shadow:  0px 5px 0px #f2cb07b7;
+}
+.not_found button:active{
+  transform: translateY(6px);
+  box-shadow:  0px 0px 0px;
+  opacity: .95;
 }
 
 .not_found img{

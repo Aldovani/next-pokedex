@@ -17,8 +17,3 @@
   justify-content: space-evenly;
 }
 
-.underline {
-  position: relative;
-  padding-bottom: 5px;
-  border-bottom: 3px solid black;
-}

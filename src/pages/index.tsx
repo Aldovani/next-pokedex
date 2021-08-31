@@ -1,10 +1,8 @@
-import { useRouter } from "next/router";
 import Head from "next/head";
 import style from "../styles/Home.module.css";
+import Link from "next/link";
 
 export default function Home() {
-  const router = useRouter();
-
   return (
     <div className={style.container}>
       <Head>
@@ -12,21 +10,15 @@ export default function Home() {
       </Head>
 
       <main className={style.content}>
-      
-
         <h1>Encontre todos os seus Pokémon favorito</h1>
         <p>
           Você pode saber o tipo de Pokémon, seus pontos fortes, desvantagens e
           habilidades
         </p>
-  
-        <button
-          onClick={() => {
-            router.push("/pokedex");
-          }}
-        >
-          Veja os pokemon
-        </button>
+
+        <Link href="/pokedex">
+          <button>Veja os pokemon</button>
+        </Link>
       </main>
 
       <section className={style.containerBanner}>
