@@ -3,31 +3,37 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width:  200px;
-  height: 180px;
+
+  width: 200px;
   border-radius: 10px;
+  
+  background: #e6e6e62f;
+  padding: 2rem;
+  cursor: url("http://www.rw-designer.com/cursor-extern.php?id=14474"),auto;
   transition: all 250ms ease;
- 
 }
 
-.Card:hover {
+.Card:hover{
   background: #e6e6e6;
-}
-
-.Card a img {
-  width: 25px;
-  height: 25px;
-  filter: brightness(0);
 }
 
 .Card p {
   text-align: center;
   font-weight: 500;
-  color: #2A3C4B;
+  color: #2a3c4b;
   text-transform: capitalize;
   font-size: 18px;
 }
 .Card span {
-  color: #A6B0B6;
+  color: #a6b0b6;
   font-size: 14px;
+}
+.type {
+  display: flex;
+  gap: 0.5rem;
+}
+.type p {
+  margin-top: 10px;
+  padding: 8px;
+  border-radius: 5px;
 }

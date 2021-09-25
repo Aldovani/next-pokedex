@@ -1,62 +1,86 @@
 .container {
   background: linear-gradient(180deg, #f5db13 0%, #f2b807 100%);
-height: 100vh;
-display: flex;
-padding-top: 6rem;
+  min-height: 100vh;
+  display: flex;
 }
 
- .content{
+.content {
   flex: 1;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: space-evenly;
+  
+   
+  
 }
-.content h1{
-  width: 80%;
-  margin: 0 auto;
-font-size: 50px;
+.content h1 {
+  font-size: 50px;
 }
-.content p{
-  width: 80%;
-
-font-size: 24px;
+.content p {
+  font-size: 24px;
 }
-.content button{
+.content button {
   width: 230px;
   height: 65px;
 
-  background: #73D677;
+  background: #73d677;
   border: 0;
   border-radius: 11px;
-  box-shadow:  0px 9px 0px #48864a;
-  
+  box-shadow: 0px 9px 0px #48864a;
+
   font-size: 18px;
   font-weight: 700;
-  transition: .3s;
-
+  transition: 0.3s;
+cursor: pointer;
+}
+.containerContent{
+  width: 80%; 
+  height: 100%;
+  margin: 0 auto;
+  display: flex;
+  align-items: flex-start;
+  flex-direction:column ;
+   justify-content: center;
+   gap: 3rem;
+   
 }
 
-.content  button:hover{
+.content button:hover {
   transform: translateY(3px);
-  box-shadow:  0px 5px 0px #48864a;
+  box-shadow: 0px 5px 0px #48864a;
 }
-.content  button:active{
+.content button:active {
   transform: translateY(6px);
-  box-shadow:  0px 0px 0px ;
-  opacity: .9;
+  box-shadow: 0px 0px 0px;
+  opacity: 0.9;
 }
- .containerBanner{
-   flex: 1;
-   display: flex;
-   align-items: flex-end;
-
+.containerBanner {
+  flex: 1;
+  display: flex;
+  align-items: flex-end;
 }
 
-.containerBanner  .banner{
-
+.containerBanner .banner {
   width: 100%;
-  transform: translateX(10px);
-  height: 110%;
-  
+  height: auto; 
+  align-self: flex-start;
 }
+
+/* @media (max-width: 600px) {
+  .containerBanner {
+    display: none;
+  }
+} */
+
+/* @media (max-width: 320px) {
+  .content h1 {
+    text-align: justify;
+    font-size: 2.4rem;
+  }
+} */
+/* 
+@media (min-width: 2400px) {
+  .content h1 {
+    text-align: justify;
+    font-size: 2.4rem;
+  }
+} */

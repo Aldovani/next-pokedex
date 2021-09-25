@@ -1,32 +1,41 @@
 import style from "./style.module.css";
 import Link from "next/link";
+import { memo } from "react";
 
 type CardProps = {
   pokemon: {
-    entry_number: number;
-    pokemon_species: {
-      name: string;
-    };
+    id: number;
+    name: string;
+    types: [];
   };
 };
 
-export function Card({ pokemon }: CardProps) {
+function Card({ pokemon }: CardProps) {
   const convertNumber = (number: Number) => String(number).padStart(3, "00");
   return (
-    <Link href={`/pokemon/${pokemon.entry_number}`}>
-      <a className={style.Card} date-name={pokemon.pokemon_species.name}>
+    <Link href={`/pokemon/${pokemon.id}`}>
+      <a className={style.Card} title={pokemon.name}>
         <img
-          src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.entry_number}.png`}
-          alt={`${pokemon.pokemon_species.name}`}
-          title={`${pokemon.pokemon_species.name}`}
+          src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png`}
+          alt={`${pokemon.name}`}
+          title={`${pokemon.name}`}
           loading="lazy"
         />
         <p>
-          {pokemon.pokemon_species.name}
+          {pokemon.name}
           <br />
-          <span> {`#${convertNumber(pokemon.entry_number)} `}</span>
+          <span> {`#${convertNumber(pokemon.id)} `}</span>
         </p>
+        <div className={style.type}>
+          {pokemon.types.map((type, i) => (
+            <p key={i} className={`${type}`}>
+              {type}
+            </p>
+          ))}
+        </div>
       </a>
     </Link>
   );
 }
+
+export const CardMemo = memo(Card);

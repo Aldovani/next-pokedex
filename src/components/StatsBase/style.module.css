@@ -24,14 +24,30 @@
 .bar {
   width: 100%;
   border: 1px solid white;
-  height: 9px;
+  height: 10px;
   position: relative;
-  border-radius: 8px;
+  border-radius: 5px;
 }
 .barContent {
   position: absolute;
   background-color: yellow;
-  border-radius: 8px;
-  width: 10%;
-  height: 7px;
+  border-radius: 4px;
+  height: 100%;
+
+
+}
+
+@media (min-width:2000px){
+  .list{
+    width: 800px;
+    gap: 2rem 5rem  }
+  .bar{
+    height: 1rem;
+  }
+  .barContent{
+    height: 100%;
+  }
+  .ElementList p{
+font-size: 1.5rem;
+  }
 }

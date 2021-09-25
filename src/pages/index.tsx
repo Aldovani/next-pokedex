@@ -10,19 +10,21 @@ export default function Home() {
       </Head>
 
       <main className={style.content}>
-        <h1>Encontre todos os seus Pokémon favorito</h1>
-        <p>
-          Você pode saber o tipo de Pokémon, seus pontos fortes, desvantagens e
-          habilidades
-        </p>
+        <div className={style.containerContent}>
+          <h1>Find all your favorite Pokemon</h1>
+          <p>
+            You can know the type of Pokemon, its strengths, disadvantages and
+            abilities
+          </p>
 
-        <Link href="/pokedex">
-          <button>Veja os pokemon</button>
-        </Link>
+          <Link href="/pokedex">
+            <button>See pokemons</button>
+          </Link>
+        </div>
       </main>
 
       <section className={style.containerBanner}>
-        <img className={style.banner} src="/banner.svg" alt="" />
+        <img className={style.banner} src="/banner.svg" alt="Pikachu" />
       </section>
     </div>
   );

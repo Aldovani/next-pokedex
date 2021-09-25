@@ -1,25 +1,26 @@
 import { GetStaticPaths } from "next";
 import Head from "next/head";
 
-import { api } from "../../services/index";
+import { api, myApi } from "../../services/index";
 import { StatsBase } from "../../components/StatsBase";
-
 import style from "./style.module.css";
+import { CarouselPokemon } from "../../components/CarouselPokemon";
 
 type PokemonType = {
+  pokeApi: {
+    stats: Stat[];
+    species: { name: string; url: string };
+    weight: number;
+    height: number;
+  };
+
   pokemon: {
     id: number;
     name: string;
-    stats: Stat[];
-    types: Type[];
-    species: { name: string; url: string };
+    rarity: string;
+    types: [];
   };
-};
-
-type Type = {
-  type: {
-    name: string;
-  };
+  id: number;
 };
 
 type Stat = {
@@ -29,27 +30,29 @@ type Stat = {
   };
 };
 
-export default function Pokemon({ pokemon }: PokemonType) {
-  const { weight, height }: any = pokemon;
+export default function Pokemon({ pokemon, pokeApi, id }: PokemonType) {
+  const { weight, height } = pokeApi;
 
   return (
     <div className={style.container}>
       <Head>
         <title>Stats | {pokemon.name}</title>
       </Head>
-      <div className={style.headerPokemon}>
-        <h1>{pokemon.name}</h1>
+      <section className={style.headerPokemon}>
+        <h1 className={style.pokemonName}>
+          {pokemon.name} <span>#{id.toString().padStart(3, "00")}</span>
+          {/* {pokemon.rarity} */}
+        </h1>
         <div className={style.types}>
-          {pokemon.types.map((e, i) => (
-            <p key={i} className={`type ${e.type.name}`}>
-              {e.type.name}
+          {pokemon.types.map((type, index) => (
+            <p key={index} className={`type ${type}`}>
+              {type}
             </p>
           ))}
         </div>
-      </div>
+      </section>
       <div className={style.stats}>
         <img
-          // src={`https://pokeres.bastionbot.org/images/pokemon/${pokemon.id}.png`}
           src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`}
           alt={`pokemon ${pokemon.name}`}
           title={pokemon.name}
@@ -67,27 +70,69 @@ export default function Pokemon({ pokemon }: PokemonType) {
             </li>
           </ul>
 
-          <StatsBase base_stat={pokemon.stats} key={pokemon.id} />
+          <StatsBase base_stat={pokeApi.stats} key={pokemon.id} />
         </section>
       </div>
+
+
+      <section className={style.headerPokemon}>
+        <h1 className={style.pokemonName}>Evolutions</h1>
+      </section>
+      <section className={style.containerEvolution}>
+        <div className={style.evolution}>
+          <img
+            src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${1}.png`}
+            alt={`pokemon ${pokemon.name}`}
+            title={pokemon.name}
+          />
+        </div>
+        <div className={style.evolution}>
+          <img
+            src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`}
+            alt={`pokemon ${pokemon.name}`}
+            title={pokemon.name}
+          />
+        </div>
+        <div className={style.evolution}>
+          <img
+            src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${3}.png`}
+            alt={`pokemon ${pokemon.name}`}
+            title={pokemon.name}
+          />
+        </div>
+      </section>
+
+      <CarouselPokemon id={id} />
+
+
     </div>
   );
 }
 
-export const getStaticPaths: GetStaticPaths = async () => {
-  return {
-    paths: [],
-    fallback: "blocking",
-  };
-};
-export async function getStaticProps(context) {
+// export const getStaticPaths: GetStaticPaths = async () => {
+//   return {
+//     paths: [],
+//     fallback: "blocking",
+//   };
+// };
+// export async function (context) {
+// return {
+// props: {}, // will be passed to the page component as props
+// }
+// }
+export async function getServerSideProps(context) {
   const { id } = context.params;
   let pokemon;
+  let pokeApi;
   try {
-    pokemon = await api.get(`pokemon/${id}`);
+    pokemon = await myApi.get(`pokemon/${id}`);
+    pokeApi = await api.get(`pokemon/${id}`);
+console.log(pokemon)
     return {
       props: {
         pokemon: pokemon.data,
+        pokeApi: pokeApi.data,
+        id: Number(id),
       },
     };
   } catch (e) {

@@ -1,0 +1,67 @@
+.select {
+  position: relative;
+  min-width: 200px
+
+  
+}
+.select img{
+  
+    position: absolute;
+    right: 12px;
+    top: calc(50% - 3px);
+    width: 10px;
+    height: 6px;
+    stroke-width: 2px;
+    stroke: #9098A9;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    pointer-events: none;
+}
+
+.select select{
+  -webkit-appearance: none;
+    padding: 7px 40px 7px 12px;
+    width: 100%;
+    border: 1px solid #E8EAED;
+    border-radius: 5px;
+    background: white;
+    box-shadow: 0 1px 3px -2px #9098A9;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 16px;
+    transition: all 150ms ease;
+}
+.select option{
+  color: #223254;
+}
+.select select:focus{
+
+  outline: none;
+  border-color: #0077FF;
+  box-shadow: 0 0 0 2px rgba(#0077FF,.2);
+}
+
+.input{
+  height: 53px;
+  box-shadow: 4px 4px 16px rgba(1, 28, 64, 0.2);
+  border-radius: 40px;
+  padding:  16px 31px ;
+  border: 0;
+  outline: none;
+  background: #F2F2F2;
+}
+.container{
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+.wraper{
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  gap:3rem
+}

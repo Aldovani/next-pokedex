@@ -4,16 +4,51 @@
   align-items: center;
   height: 5rem;
   background: #f5db13;
-  position: fixed;
-  z-index: 2;
   border-bottom: 1px solid rgba(77, 100, 120, 0.2);
-  width: 100vw;
-  box-shadow: 1px 1px 15px 9px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 4px 16px rgba(1, 28, 64, 0.2);
 }
 
-.header nav {
-  gap: 50px;
+.list {
+  list-style: none;
+  gap: 3.125rem;
   display: flex;
   justify-content: space-evenly;
 }
+.list li {
+  position: relative;
+}
 
+.notSelected::after {
+  transform: scaleX(0);
+  transition: all 500ms ease;
+  position: absolute;
+  content: "";
+  background-color: black;
+  display: block;
+  width: 100%;
+  left: 0;
+  height: 3px;
+  margin-top: 1rem;
+  transform-origin: bottom left ;
+}
+
+.notSelected:hover::after {
+  transform: scaleX(1);
+}
+
+.selected::after {
+  position: absolute;
+  content: "";
+  background-color: black;
+  display: block;
+  width: 100%;
+  height: 3px;
+  margin-top: 1rem;
+}
+
+
+@media (max-width: 400px) {
+  .header {
+    justify-content: space-around;
+  }
+}
