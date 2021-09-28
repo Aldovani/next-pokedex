@@ -4,12 +4,11 @@
   justify-content: center;
   align-items: center;
 
-  width: 200px;
-  border-radius: 10px;
+  width: 12.5rem;
+  border-radius: 0.625rem;
   
   background: #e6e6e62f;
   padding: 2rem;
-  cursor: url("http://www.rw-designer.com/cursor-extern.php?id=14474"),auto;
   transition: all 250ms ease;
 }
 
@@ -22,18 +21,28 @@
   font-weight: 500;
   color: #2a3c4b;
   text-transform: capitalize;
-  font-size: 18px;
+  font-size: 1.125rem;
 }
 .Card span {
   color: #a6b0b6;
-  font-size: 14px;
+  font-size: 0.875rem;
 }
 .type {
   display: flex;
   gap: 0.5rem;
 }
 .type p {
-  margin-top: 10px;
-  padding: 8px;
-  border-radius: 5px;
+  margin-top: 0.625;
+  padding: 0.5rem;
+  border-radius: 0.313rem;
+}
+
+.containerPokemon{
+  margin-top: 3rem;
+    display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+  /* background: ; */
+
 }

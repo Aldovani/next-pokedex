@@ -60,48 +60,6 @@ a {
   text-transform: capitalize;
 }
 
-/* .rock,
-.dark,
-.steel {
-  background: #a1a1a1;
-}
-
-.grass,
-.bug {
-  background: #70a83b;
-}
-
-.ice,
-.water {
-  background: #a2cff0;
-}
-
-.fire,
-.dragon,
-.fighting {
-  background: #f76545;
-}
-
-.normal,.flying {
-  background: #76aabd;
-  color: black;
-}
-
-.poison,
-.psychic,
-.fairy,
-.ghost {
-  background: #a974bc;
-}
-
-.ground {
-  background: #9b897b;
-}
-
-.electric {
-  background: #f7c545;
-} */
-
 .dark{background: var(--dark);}
 .steel {
   background: var(--steel);

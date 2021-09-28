@@ -1,27 +1,26 @@
 .select {
   position: relative;
-  min-width: 200px
-
-  
+  min-width: 12.5rem;
+  /* display: flex; */
+  /* flex-direction: column; */
+  /* gap: 0.3r  em; */
 }
+
 .select img{
-  
+
     position: absolute;
+    z-index: 1;
     right: 12px;
     top: calc(50% - 3px);
-    width: 10px;
-    height: 6px;
-    stroke-width: 2px;
-    stroke: #9098A9;
-    fill: none;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-    pointer-events: none;
+    width: 12px;
+    height: 25px;
+
 }
 
 .select select{
+  z-index: 3;
   -webkit-appearance: none;
-    padding: 7px 40px 7px 12px;
+    padding: 0.438rem 2.5rem 0.438rem 0.75rem;
     width: 100%;
     border: 1px solid #E8EAED;
     border-radius: 5px;
@@ -29,7 +28,7 @@
     box-shadow: 0 1px 3px -2px #9098A9;
     cursor: pointer;
     font-family: inherit;
-    font-size: 16px;
+    font-size: 1rem;
     transition: all 150ms ease;
 }
 .select option{
@@ -46,7 +45,7 @@
   height: 53px;
   box-shadow: 4px 4px 16px rgba(1, 28, 64, 0.2);
   border-radius: 40px;
-  padding:  16px 31px ;
+  padding:  1rem 2rem ;
   border: 0;
   outline: none;
   background: #F2F2F2;
@@ -64,4 +63,20 @@
   justify-content: center;
   display: flex;
   gap:3rem
+}
+.show .select{
+  z-index: 3;
+  width: 1000px;
+}
+.range{
+  display: flex;
+  width: 100%;
+  gap: 1rem;
+  align-items: center;
+}
+
+@media(max-width:900px){
+  .wraper{
+    flex-wrap: wrap;
+  }
 }

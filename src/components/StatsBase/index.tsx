@@ -1,26 +1,26 @@
 import style from "./style.module.css";
 
 type StatsBaseProps = {
-  base_stat:BaseStatProps[]
-
-}
+  base_stat: BaseStatProps[];
+};
 
 type BaseStatProps = {
-  
-  base_stat:number,
+  base_stat: number;
   stat: {
-    name:string
-  }
-}
+    name: string;
+  };
+};
 
-export function StatsBase({ base_stat }:StatsBaseProps) {
+export function StatsBase({ base_stat }: StatsBaseProps) {
+  const baseConverted = base_stat.map((e) => {
+    const base_stat = Math.floor((Number(e.base_stat) * 100) / 260);
+    return { ...e, base_stat };
+  });
 
   return (
     <div>
       <ol className={style.list}>
-        {base_stat.map((e, i) => {
-          let valorConvertido = Math.floor((Number(e.base_stat) * 100) / 260);
-          
+        {baseConverted.map((e, i) => {
           return (
             <li key={i} className={style.ElementList}>
               <p>{e.stat.name}</p>
@@ -28,7 +28,7 @@ export function StatsBase({ base_stat }:StatsBaseProps) {
               <p>{e.base_stat.toFixed(3).replace(".", ",")}</p>
               <div className={style.bar}>
                 <div
-                  style={{ width: `${valorConvertido}%` }}
+                  style={{ width: `${e.base_stat}%` }}
                   className={style.barContent}
                 ></div>
               </div>

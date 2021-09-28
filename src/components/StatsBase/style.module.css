@@ -3,15 +3,16 @@
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  gap: 20px 40px;
+  gap: 1.25rem 2.5rem;
   flex-wrap: wrap;
-  width: 500px;
+  width: 31.25rem;
+  min-width: 12.5rem;
 }
 .ElementList {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  min-width: 200px;
+  width:40%;
 }
 .ElementList p {
   font-family: "Karla", sans-serif;
@@ -24,30 +25,44 @@
 .bar {
   width: 100%;
   border: 1px solid white;
-  height: 10px;
-  position: relative;
+  height: 0.625rem;
   border-radius: 5px;
 }
 .barContent {
-  position: absolute;
   background-color: yellow;
   border-radius: 4px;
   height: 100%;
-
-
 }
 
-@media (min-width:2000px){
-  .list{
+@media (min-width: 2000px) {
+  .list {
     width: 800px;
-    gap: 2rem 5rem  }
-  .bar{
+    gap: 2rem 5rem;
+  }
+  .bar {
     height: 1rem;
   }
-  .barContent{
+  .barContent {
     height: 100%;
   }
-  .ElementList p{
-font-size: 1.5rem;
+  .ElementList p {
+    font-size: 1.5rem;
   }
+}
+@media (max-width: 400px) {
+  .list {
+    width: 100%;
+    gap: 2rem 0rem;
+  }
+  .bar {
+    width: 70%;
+  }
+  .ElementList {
+    width: 50%;
+  }
+  .ElementList p {
+    font-size: 1rem;
+  }
+
+
 }

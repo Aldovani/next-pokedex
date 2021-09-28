@@ -7,16 +7,37 @@ import style from "./style.module.css";
 export function CarouselPokemon({ id }) {
   const [pokemonArray, setPokemonArray] = useState([]);
   const settings = {
-    infinite: false,
+    centerPadding: "0px",
+    infinite: true,
+    centerMode: true,
     draggable: true,
     touchMove: true,
     speed: 700,
-    dots: true,
-    slidesToShow: 5,
-    slidesToScroll: 5,
+    slidesToShow: 4,
+    slidesToScroll: 4,
 
     responsive: [
-      { breakpoint: 900, settings: { slidesToShow: 1, dots: true } },
+      {
+        breakpoint: 1000,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+        },
+      },
+      {
+        breakpoint: 700,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+        },
+      },
+      {
+        breakpoint: 400,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
     ],
   };
 

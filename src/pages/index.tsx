@@ -11,7 +11,9 @@ export default function Home() {
 
       <main className={style.content}>
         <div className={style.containerContent}>
-          <h1>Find all your favorite Pokemon</h1>
+          <h1>
+            <span> Find</span> all your favorite <span> Pokemon</span>
+          </h1>
           <p>
             You can know the type of Pokemon, its strengths, disadvantages and
             abilities

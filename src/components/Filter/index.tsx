@@ -6,15 +6,8 @@ import "rc-slider/assets/index.css";
 const Range = createSliderWithTooltip(Slider.Range);
 
 function Filter() {
-  const {
-    name,
-    range,
-    handleSeek,
-    handleTypes,
-    handleName,
-    handleRarity,
-    rarity,
-  } = useContext(FilterPokemonContext);
+  const { name, range, handleSeek, handleTypes, handleName, handleRarity } =
+    useContext(FilterPokemonContext);
 
   return (
     <div className={styles.container}>
@@ -29,18 +22,22 @@ function Filter() {
       />
 
       <div className={styles.wraper}>
-        0
-        <Range
-          min={1}
-          max={898}
-          onChange={(e) => {
-            handleSeek(e);
-          }}
-          value={[range[0], range[1]]}
-          defaultValue={[range[0], range[1]]}
-        />
-        898
+        <div className={styles.range}>
+          0
+          <Range
+            min={1}
+            max={898}
+            onChange={(e) => {
+              handleSeek(e);
+            }}
+            value={[range[0], range[1]]}
+            defaultValue={[range[0], range[1]]}
+          />
+          898
+        </div>
+
         <label className={styles.select}>
+          Type
           <select
             onChange={(e) => {
               handleTypes(e.target.value.toLowerCase());
@@ -69,14 +66,14 @@ function Filter() {
           <img src="/down-arrow.svg" />
         </label>
         <label className={styles.select}>
+          Rarity:
           <select
-         
             onChange={(e) => {
               handleRarity(e.target.value.toLowerCase());
             }}
           >
             <option value="all">All</option>
-            <option value="Common" >Common</option>
+            <option value="Common">Common</option>
             <option value="Uncommon">Uncommon</option>
             <option value="Rare">Rare</option>
             <option value="mythical">Mythical</option>

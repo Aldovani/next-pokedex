@@ -1,16 +1,14 @@
-.container{
-width: 85%;
-margin: 5rem auto;
-
+.container {
+  width: 85%;
+  margin: 5rem auto;
 }
 
 .next {
-  cursor: url("http://www.rw-designer.com/cursor-extern.php?id=14474"),auto;
   display: flex;
   flex-direction: column;
   align-items: center;
-  
-  width: 200px;
+
+  width: 12.5rem;
   background: linear-gradient(
     215.78deg,
     #b57e10 -124.09%,
@@ -20,30 +18,37 @@ margin: 5rem auto;
     #f9df7b 50.24%,
     #b57e10 99.06%
   );
-  border-radius: 18px;
-  padding:  1.5rem;
+  border-radius: 1.125rem;
+  padding: 1.5rem;
   position: relative;
-transition: all 1s;
+  transition: all 1s;
 }
 
-.next img{
+.next img {
   transition: 0.5s;
 }
 
-.next:hover img{
+.next:hover img {
   transform: scale(1.2);
 }
 .id {
-  padding:  .3rem;
+  padding: 0.3rem;
   border-radius: 1rem;
   font-size: 2.5rem;
   background: #fff;
-  color: #1D1E1D;
+  color: #1d1e1d;
   text-align: center;
   width: 100%;
 }
 
 .pokemonImg {
-  width: 150px;
-  height: 150px;
+  width: 9.375rem;
+  height: 9.375rem;
+}
+
+@media (max-width: 400px) {
+  .container {
+    width: 60%;
+    margin: 5rem auto;
+  }
 }

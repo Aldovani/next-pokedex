@@ -41,7 +41,6 @@ export default function Pokemon({ pokemon, pokeApi, id }: PokemonType) {
       <section className={style.headerPokemon}>
         <h1 className={style.pokemonName}>
           {pokemon.name} <span>#{id.toString().padStart(3, "00")}</span>
-          {/* {pokemon.rarity} */}
         </h1>
         <div className={style.types}>
           {pokemon.types.map((type, index) => (
@@ -51,7 +50,7 @@ export default function Pokemon({ pokemon, pokeApi, id }: PokemonType) {
           ))}
         </div>
       </section>
-      <div className={style.stats}>
+      <section className={style.stats}>
         <img
           src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`}
           alt={`pokemon ${pokemon.name}`}
@@ -72,39 +71,8 @@ export default function Pokemon({ pokemon, pokeApi, id }: PokemonType) {
 
           <StatsBase base_stat={pokeApi.stats} key={pokemon.id} />
         </section>
-      </div>
-
-
-      <section className={style.headerPokemon}>
-        <h1 className={style.pokemonName}>Evolutions</h1>
       </section>
-      <section className={style.containerEvolution}>
-        <div className={style.evolution}>
-          <img
-            src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${1}.png`}
-            alt={`pokemon ${pokemon.name}`}
-            title={pokemon.name}
-          />
-        </div>
-        <div className={style.evolution}>
-          <img
-            src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`}
-            alt={`pokemon ${pokemon.name}`}
-            title={pokemon.name}
-          />
-        </div>
-        <div className={style.evolution}>
-          <img
-            src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${3}.png`}
-            alt={`pokemon ${pokemon.name}`}
-            title={pokemon.name}
-          />
-        </div>
-      </section>
-
       <CarouselPokemon id={id} />
-
-
     </div>
   );
 }
@@ -127,7 +95,6 @@ export async function getServerSideProps(context) {
   try {
     pokemon = await myApi.get(`pokemon/${id}`);
     pokeApi = await api.get(`pokemon/${id}`);
-console.log(pokemon)
     return {
       props: {
         pokemon: pokemon.data,
