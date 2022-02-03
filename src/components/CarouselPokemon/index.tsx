@@ -32,8 +32,9 @@ export function CarouselPokemon({ id }) {
         },
       },
       {
-        breakpoint: 400,
+        breakpoint: 500,
         settings: {
+          centerPadding: "50px",
           slidesToShow: 1,
           slidesToScroll: 1,
         },
