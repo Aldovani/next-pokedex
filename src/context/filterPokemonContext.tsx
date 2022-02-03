@@ -1,4 +1,5 @@
 import { createContext, useState } from "react";
+import useDebounce from "../hooks/useDebouce";
 
 type FilterContext = {
   range: number[];
@@ -9,6 +10,7 @@ type FilterContext = {
   handleSeek: (e: number[]) => void;
   handleName: (e: string) => void;
   handleRarity: (e: string) => void;
+  debounce:(e:string) => void;
 };
 
 export const FilterPokemonContext = createContext({} as FilterContext);
@@ -18,18 +20,19 @@ export function FilterPokemonProvider(props) {
   const [types, setTypes] = useState("all");
   const [rarity, setRarity] = useState("all");
   const [name, setName] = useState("");
+  const debounce = useDebounce(handleName, 500);
 
-  function handleSeek(e) {
+  function handleSeek(e:number[]) {
     setRange(e);
   }
-  function handleTypes(e) {
+  function handleTypes(e:string) {
     setTypes(e);
   }
-  function handleRarity(e) {
+  function handleRarity(e:string) {
     setRarity(e);
   }
   
-  function handleName(e) {
+  function handleName(e:string) {
     setName(e);
     setRange([0,898]);
     
@@ -46,6 +49,7 @@ export function FilterPokemonProvider(props) {
         handleSeek,
         handleName,
         handleRarity,
+        debounce
       }}
     >
       {props.children}

@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import styles from "./style.module.css";
 import { FilterPokemonContext } from "../../context/filterPokemonContext";
 import Slider, { createSliderWithTooltip } from "rc-slider";
@@ -6,16 +6,23 @@ import "rc-slider/assets/index.css";
 const Range = createSliderWithTooltip(Slider.Range);
 
 function Filter() {
-  const { name, range, handleSeek, handleTypes, handleName, handleRarity } =
-    useContext(FilterPokemonContext);
+  const {
+    range,
+    handleSeek,
+    handleTypes,
+    handleRarity,
+    debounce,
+  } = useContext(FilterPokemonContext);
+const [input, setInput]=useState("");
 
   return (
     <div className={styles.container}>
       <input
-        value={name}
+        value={input}
         className={styles.input}
         onChange={(e) => {
-          handleName(e.target.value);
+          setInput((e.target.value).toLowerCase());
+          debounce((e.target.value).toLowerCase());
         }}
         type="text"
         placeholder="Find your pokémon ...."

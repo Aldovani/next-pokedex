@@ -19,7 +19,7 @@ export default function Pokemons({ pokemon }) {
       }
     });
     return () => {
-      // setState({}); // This worked for me
+      window.removeEventListener("scroll", () => {});
     };
   }, []);
 
@@ -48,9 +48,7 @@ export default function Pokemons({ pokemon }) {
 }
 
 export async function getStaticProps() {
-  // const response = await api.get("pokedex/1");
   const response = await myApi.get("pokemon");
-  console.log(response.data);
   return {
     props: {
       pokemon: response.data,
